@@ -1,0 +1,119 @@
+<style>
+    * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.login-box {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+.textbox {
+    margin-bottom: 15px;
+}
+
+.textbox label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.textbox input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.textbox input:focus {
+    border-color: #417690;;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color:#417690;;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: wheat;
+}
+
+.forgot {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color:#417690;
+    text-decoration: none;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+</style>
+<body>
+    <div class="container">
+        <div class="login-box">
+            <h1>Signup</h1>
+            <form  method="POST">
+                <div class="message">
+                    {% if messages %}
+                    {% for message in messages %}
+                    <h4 style="color: firebrick;">{{ message }}</h4>
+                    {% endfor %}
+                    {% endif %}
+                </div>
+                {% csrf_token %}
+                <div class="textbox">
+                    <label for="username">username</label>
+                    <input type="username" id="username" name="username" placeholder="Enter your username" required>
+                </div>
+                
+                <div class="textbox">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <a href="{% url 'login'%}" class="forgot">don't have account?/login</a>
+                
+            </form>
+
+        </div>
+    </div>
+</body>
+

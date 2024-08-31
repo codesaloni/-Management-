@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row ">
+    <div class="col-md-4" style="background-color:white; height: 100vh; width: 300px;">
+      <h4 style="font-style: oblique;">DashBoard</h4>
+      <div class="box" style="margin-top: 40px; margin-left: 40px;">
+        <div class="dropdown" style="display: flex;">
+          
+          <div class="col"  data-bs-toggle="dropdown"  style="width: 300px;">
+            Staff
+            <i class="fa-solid fa-chevron-right" style="margin-left: 180px;"></i>
+          </div>
+          <ul class="dropdown-menu"style="width: 200px;" >
+            <li><a class="dropdown-item" href="{% url 'staffadd'%}">Add</a></li>
+            <li><a class="dropdown-item" href="{% url 'staf'%}">View</a></li>
+            
+          </ul>
+        </div>
+        <div class="dropdown" style="display: flex; margin-top: 40px;">
+          
+          <div class="col"  data-bs-toggle="dropdown"  style="width: 300px;">
+            Supplier
+            <i class="fa-solid fa-chevron-right" style="margin-left: 150px;"></i>
+          </div>
+          <ul class="dropdown-menu"style="width: 200px;" >
+            <li><a class="dropdown-item" href="{% url 'selleradd'%}">Add</a></li>
+            <li><a class="dropdown-item" href="{% url 'seller'%}">View</a></li>
+            
+          </ul>
+        </div>
+        <div class="dropdown" style="display: flex; margin-top: 40px;">
+          
+          <div class="col"  data-bs-toggle="dropdown"  style="width: 300px;">
+            Product
+            <i class="fa-solid fa-chevron-right" style="margin-left: 150px;"></i>
+          </div>
+          <ul class="dropdown-menu"style="width: 200px;" >
+            <li><a class="dropdown-item" href="{% url 'productadd'%}">Add</a></li>
+            <li><a class="dropdown-item" href="{% url 'product'%}">View</a></li>
+            
+          </ul>
+        </div>
+       
+      </div>
+        
+    </div>
+    <div class="col-md-8 " style="margin-top: 20px; margin-left: 50px;" >
+      <div class="box" style="display: flex; gap: 80px;">
+     <div class="b1" style="background-color: #f8f9fa; height: 140px; width: 240px; box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14)">
+      <div class="text" style="display: flex;">
+        <i class="fa-brands fa-product-hunt  fa-2x"style="margin-left: 40px;  margin-top: 20px;"></i>
+        <a href="{% url 'product'%}" style="text-decoration: none; color: black;"><h4 style="margin-left: 40px; margin-top: 20px;">Product</h4></a>
+      </div>
+
+     </div>
+     <div class="b1" style="background-color: #f8f9fa; height: 140px; width: 240px; box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14)">
+      <div class="text" style="display: flex;">
+        <i class="fa-solid fa-user-group fa-2x" style="margin-left: 40px;  margin-top: 20px;"></i>
+        <a href="{% url 'staf'%}" style="text-decoration: none; color: black;"><h4 style="margin-left: 40px; margin-top: 20px;">Staff</h4></a>
+      </div>
+     </div>
+     <div class="b1" style="background-color: #f8f9fa; height: 140px; width: 240px; box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14)">
+      <div class="text" style="display: flex;">
+        <i class="fa-solid fa-cart-shopping fa-2x" style="margin-left: 40px;  margin-top: 20px;"></i>
+        <a href="{% url 'seller'%}" style="text-decoration: none; color: black;"><h4 style="margin-left: 40px; margin-top: 20px;">Supplier</h4></a>
+      </div>
+     </div>
+    </div>
+      <h4 style="margin-top: 20px;">Dashboard</h4>
+<table class="table  " style="height: 300px; width: 110%; margin-left: 10px; margin-top:20px ;">
+    <thead>
+      <tr>
+        <th scope="col">seller_name</th>
+        <th scope="col">seller_email</th>
+        <th scope="col">seller_addres</th>
+        <th scope="col">seller_quantity</th>
+        <th scope="col">seller_number</th>
+        <th scope="col">del/update</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for i in items %}
+      <tr>
+        
+        <td>{{i.seller_name}}</td>
+        
+        <td>{{i.seller_email}}</td>
+        <td>{{i.seller_address}}</td>
+        <td>{{i.seller_number}}</td>
+        <td>{{i.seller_quantity}}</td>
+        <td>
+          <form action="{% url 'sellerdelete' i.id %}" method="post" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <form action="{% url 'update_seller' i.pk %}" method="post" class="d-inline">
+          {% csrf_token %}
+          <button type="submit" class="btn btn" style="background-color: #79aec8; color: white;">Delete</button>
+      </form>
+        
+       
+      </tr>
+      {% endfor%}
+    </tbody>
+  </table> 
+</div> 
+
+</div>  
+{% endblock %}
